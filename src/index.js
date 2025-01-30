@@ -6,7 +6,14 @@ dotenv.config({
 })
 
 connectDB()
-
+.then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`Server is running at port : ${process.env.PORT}`);
+    })
+})
+.catch((err) => {
+    console.log("Mongo DB connection failed!!! ", err);
+})
 
 
 // Not using this approach as writing db connection code in the index.js file is populating this file unnecessarily.
